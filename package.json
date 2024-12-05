@@ -1,0 +1,16 @@
+{
+  "name": "seaavey",
+  "description": "Project Bot WhatsApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Muhammad Adriansyah",
+  "license": "MIT",
+  "dependencies": {
+    "@seaavey/wafunc": "github:seaavey/wafunc",
+    "moment-timezone": "^0.5.46"
+  }
+}
