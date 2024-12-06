@@ -1,4 +1,4 @@
-require("./lib/_license"); // Don't remove this line
+require("./lib/_license");
 const {
   makeWASocket: makeWASocket,
   delay,
