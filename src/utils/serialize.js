@@ -17,6 +17,7 @@ const {
 } = require("@seaavey/wafunc/core/index.js");
 
 const { owner } = JSON.parse(fs.readFileSync("config.json"));
+
 function Client({ conn, store }) {
   const client = Object.defineProperties(conn, {
     sendImage: {
@@ -63,6 +64,31 @@ function Client({ conn, store }) {
       enumerable: true,
     },
 
+    sendAds: {
+      async value(jid, text, quoted, options = {}) {
+        return conn.sendMessage(
+          jid,
+          {
+            text,
+            contextInfo: {
+              forwardingScore: 999,
+              isForwarded: true,
+              externalAdReply: {
+                showAdAttribution: options.showAdAttribution || true,
+                title: options.title || "Powered By Seaavey",
+                body: options.body || null,
+                thumbnailUrl:
+                  options.thumbnailUrl ||
+                  "https://telegra.ph/file/4b8b3e1e2c3b1c4a9b8e5.jpg",
+                renderLargerThumbnail: options.renderLargerThumbnail || true,
+                mediaType: 1,
+              },
+            },
+          },
+          { quoted }
+        );
+      },
+    },
     getName: {
       value(jid) {
         let id = jidNormalizedUser(jid);

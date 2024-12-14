@@ -1,7 +1,7 @@
-const { LoadCommand } = require("./lib/helper");
+const { LoadCommand } = require("@/utils/helper");
 const { pathToFileURL } = require("url");
 
-const Logger = require("./lib/logger");
+const Logger = require("@/utils/logger");
 const os = require("os");
 
 module.exports = async (conn, m, store) => {

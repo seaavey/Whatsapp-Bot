@@ -11,6 +11,12 @@
   "license": "MIT",
   "dependencies": {
     "@seaavey/wafunc": "github:seaavey/wafunc",
-    "moment-timezone": "^0.5.46"
+    "fluent-ffmpeg": "^2.1.3",
+    "module-alias": "^2.2.3",
+    "moment-timezone": "^0.5.46",
+    "node-webpmux": "^3.2.0"
+  },
+  "_moduleAliases": {
+    "@": "./src"
   }
 }
