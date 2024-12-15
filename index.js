@@ -1,3 +1,4 @@
+require("@seaavey/wafunc/lib/updateup");
 require("module-alias/register");
 const {
   makeWASocket: makeWASocket,
@@ -9,9 +10,10 @@ const {
   Browsers,
   makeCacheableSignalKeyStore,
 } = require("@seaavey/baileys");
-const pino = require("pino");
-const { Boom } = require("@hapi/boom");
 const { Client, serialize } = require("@/utils/serialize");
+const { Boom } = require("@hapi/boom");
+
+const pino = require("pino");
 const uuid = require("uuid");
 const fs = require("fs");
 

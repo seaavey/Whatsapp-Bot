@@ -14,7 +14,7 @@ const {
   escapeRegExp,
   getContentType,
   parseMessage,
-} = require("@seaavey/wafunc/core/index.js");
+} = require("@seaavey/wafunc/core");
 
 const { owner } = JSON.parse(fs.readFileSync("config.json"));
 
@@ -64,31 +64,6 @@ function Client({ conn, store }) {
       enumerable: true,
     },
 
-    sendAds: {
-      async value(jid, text, quoted, options = {}) {
-        return conn.sendMessage(
-          jid,
-          {
-            text,
-            contextInfo: {
-              forwardingScore: 999,
-              isForwarded: true,
-              externalAdReply: {
-                showAdAttribution: options.showAdAttribution || true,
-                title: options.title || "Powered By Seaavey",
-                body: options.body || null,
-                thumbnailUrl:
-                  options.thumbnailUrl ||
-                  "https://telegra.ph/file/4b8b3e1e2c3b1c4a9b8e5.jpg",
-                renderLargerThumbnail: options.renderLargerThumbnail || true,
-                mediaType: 1,
-              },
-            },
-          },
-          { quoted }
-        );
-      },
-    },
     getName: {
       value(jid) {
         let id = jidNormalizedUser(jid);
@@ -174,48 +149,6 @@ function Client({ conn, store }) {
         }
 
         return media;
-      },
-      enumerable: true,
-    },
-
-    reply: {
-      value(jid, text, quoted, options = {}) {
-        let txt;
-        if (options.type === "mono") {
-          txt = "```" + text + "```";
-        } else if (options.type === "bold") {
-          txt = "*" + text + "*";
-        } else if (options.type === "italic") {
-          txt = "_" + text + "_";
-        } else if (options.type === null) txt = text;
-        conn.sendMessage(jid, { txt, ...options }, { quoted });
-      },
-      enumerable: true,
-    },
-
-    sendSticker: {
-      async value(
-        jid,
-        buffer,
-        type,
-        quoted,
-        packname = process.env.packName,
-        author = process.env.packPublish
-      ) {
-        let exif = {
-          packName: packname,
-          packPublish: author,
-        };
-        let sticker = await (
-          await import("./sticker.js")
-        ).writeExif({ mimetype: type, data: buffer }, exif);
-        return await conn.sendMessage(
-          jid,
-          {
-            sticker: sticker,
-          },
-          { sendEphemeral: true, quoted }
-        );
       },
       enumerable: true,
     },

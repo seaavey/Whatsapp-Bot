@@ -32,11 +32,11 @@ module.exports = {
 
       if (array.length === 0) return m.reply("Media Tidak Ditemukan!");
 
-      for (let i = 0; i < a.length; i++) {
+      for (let i = 0; i < array.length; i++) {
         if (a[i].includes("https://scontent.cdninstagram.com")) {
-          await conn.sendImage(m.from, a[i], null, m);
+          await conn.sendImage(m.from, array[i], null, m);
         } else {
-          await conn.sendVideo(m.from, a[i], null, m);
+          await conn.sendVideo(m.from, array[i], null, m);
         }
       }
     } catch (e) {
