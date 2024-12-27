@@ -1,4 +1,3 @@
-require("@seaavey/wafunc/lib/updateup");
 require("module-alias/register");
 const {
   makeWASocket: makeWASocket,
